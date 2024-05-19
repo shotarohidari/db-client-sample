@@ -25,13 +25,12 @@ export class DataManager {
   private client: IDBClient
   constructor(client: IDBClient) {
     this.client = client
-    const promise = new Promise<void>((resolve, reject) => {
-      try {
-        client.connect().then(() => resolve())
-      } catch (e) {
-        reject("Connection error!.")
-      }
-    })
+    const { promise, reject, resolve } = Promise.withResolvers<void>()
+    try {
+      client.connect().then(() => resolve())
+    } catch (e) {
+      reject("Connection error!.")
+    }
     this.setupPromise = promise
   }
   async query() {

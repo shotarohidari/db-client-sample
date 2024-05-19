@@ -18,5 +18,8 @@
   "dependencies": {
     "mongodb": "6.6"
   },
-  "type": "module"
+  "type": "module",
+  "engines": {
+    "node": "22.0"
+  }
 }
